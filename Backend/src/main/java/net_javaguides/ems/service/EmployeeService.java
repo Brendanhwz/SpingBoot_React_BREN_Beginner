@@ -5,4 +5,6 @@ import net_javaguides.ems.entity.Employee;
 
 public interface EmployeeService {
     EmployeeDto createEmployee (EmployeeDto employeeDto);
+
+    EmployeeDto getEmployeeById (Long employeeId);
 }
