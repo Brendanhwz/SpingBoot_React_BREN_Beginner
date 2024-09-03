@@ -39,4 +39,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         //Transforming the JPA Entity into DTO in a collection <List>
         return allEmployees.stream().map((Employee) -> EmployeeMapper.mapToEmployeeDto(Employee)).collect(Collectors.toUnmodifiableList());
     }
+
+    @Override
+    public EmployeeDto updateEmployee(Long employeeId, EmployeeDto updatedEmployee) {
+        //Calling Hibernate JpaRepository API method to find record
+        Employee employee = employeeRepository.findById(employeeId).orElseThrow(
+                () -> new ResourceNotFoundException("Employee is not exist with given id: " + employeeId)
+        );
+        //Setting existing jpa entity with updated values from supplied @RequestBody
+        employee.setFirstName(updatedEmployee.getFirstName());
+        employee.setLastName(updatedEmployee.getLastName());
+        employee.setEmail(updatedEmployee.getEmail());
+
+        Employee saveUpdatedEmployee = employeeRepository.save(employee);
+
+        return EmployeeMapper.mapToEmployeeDto(saveUpdatedEmployee);
+    }
+
 }
