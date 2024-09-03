@@ -9,6 +9,9 @@ import net_javaguides.ems.repository.EmployeeRepository;
 import net_javaguides.ems.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 
 @Service
@@ -28,5 +31,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee is not exist with given id: " + employeeId));
         return EmployeeMapper.mapToEmployeeDto(employee);
+    }
+
+    @Override
+    public List<EmployeeDto> getAllEmployees() {
+        List <Employee> allEmployees = employeeRepository.findAll();
+        //Transforming the JPA Entity into DTO in a collection <List>
+        return allEmployees.stream().map((Employee) -> EmployeeMapper.mapToEmployeeDto(Employee)).collect(Collectors.toUnmodifiableList());
     }
 }
