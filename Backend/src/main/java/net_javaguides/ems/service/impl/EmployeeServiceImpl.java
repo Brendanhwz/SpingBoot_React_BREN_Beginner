@@ -47,10 +47,16 @@ public class EmployeeServiceImpl implements EmployeeService {
                 () -> new ResourceNotFoundException("Employee is not exist with given id: " + employeeId)
         );
         //Setting existing jpa entity with updated values from supplied @RequestBody
-        employee.setFirstName(updatedEmployee.getFirstName());
-        employee.setLastName(updatedEmployee.getLastName());
-        employee.setEmail(updatedEmployee.getEmail());
-
+        //20240908 including fix to set only set values in @RequestBody and keeping the rest persisted in DB
+        if (updatedEmployee.getFirstName() != null) {
+            employee.setFirstName(updatedEmployee.getFirstName());
+        }
+        if (updatedEmployee.getLastName() != null) {
+            employee.setLastName(updatedEmployee.getLastName());
+        }
+        if (updatedEmployee.getEmail() != null) {
+            employee.setEmail(updatedEmployee.getEmail());
+        }
         Employee saveUpdatedEmployee = employeeRepository.save(employee);
 
         return EmployeeMapper.mapToEmployeeDto(saveUpdatedEmployee);
