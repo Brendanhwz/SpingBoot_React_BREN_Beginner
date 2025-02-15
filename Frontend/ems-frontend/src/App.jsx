@@ -2,8 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import HelloWorld from './HelloWorld'
-import Greetings from './Greetings'
+import Greetings from "./Components/Greetings"
+import MyComponent, { FirstComponent, SecondComponent, ThirdComponent } from './Components/MyComponent'
 
 
 function App() {
@@ -36,6 +36,10 @@ function App() {
       
       <Greetings name="Brendan"/>
       <Greetings name="Ho ah Ho"/>
+      <FirstComponent/>
+      <SecondComponent></SecondComponent>
+      <ThirdComponent></ThirdComponent>
+      <MyComponent property="Test123"></MyComponent>
 
     </>
   )
