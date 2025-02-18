@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Greetings from "./Components/Greetings"
 import MyComponent, { FirstComponent, SecondComponent, ThirdComponent } from './Components/MyComponent'
+import HelloWorld from './Components/HelloWorld'
 
 
 function App() {
@@ -31,15 +32,15 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p> */}
-      {/* <HelloWorld name="Brendan"/>
-      <HelloWorld name="Ho ah Ho"/> */}
+      <HelloWorld name="Brendan"/>
+      {/* <HelloWorld name="Ho ah Ho"/> */}
       
-      <Greetings name="Brendan"/>
+      {/* <Greetings name="Brendan"/>
       <Greetings name="Ho ah Ho"/>
       <FirstComponent/>
       <SecondComponent></SecondComponent>
       <ThirdComponent></ThirdComponent>
-      <MyComponent property="Test123"></MyComponent>
+      <MyComponent property="Test123"></MyComponent> */}
 
     </>
   )
