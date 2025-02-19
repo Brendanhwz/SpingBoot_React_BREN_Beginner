@@ -5,10 +5,17 @@ import './App.css'
 import Greetings from "./Components/Greetings"
 import MyComponent, { FirstComponent, SecondComponent, ThirdComponent } from './Components/MyComponent'
 import HelloWorld from './Components/HelloWorld'
+import Student from './Components/Student'
 
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const studentData = {
+    firstname: "Shoyo",
+    lastname: "Hinata",
+    email: "hinataShoyo@karasuno.high.com"
+  }
 
   return (
     <>
@@ -41,6 +48,8 @@ function App() {
       <SecondComponent></SecondComponent>
       <ThirdComponent></ThirdComponent>
       <MyComponent property="Test123"></MyComponent> */}
+      <Student studentData1={studentData}/>
+
 
     </>
   )
