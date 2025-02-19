@@ -6,6 +6,7 @@ import Greetings from "./Components/Greetings"
 import MyComponent, { FirstComponent, SecondComponent, ThirdComponent } from './Components/MyComponent'
 import HelloWorld from './Components/HelloWorld'
 import Student from './Components/Student'
+import Employee from './Components/Employee'
 
 
 function App() {
@@ -48,7 +49,14 @@ function App() {
       <SecondComponent></SecondComponent>
       <ThirdComponent></ThirdComponent>
       <MyComponent property="Test123"></MyComponent> */}
-      <Student studentData1={studentData}/>
+      <Student 
+        firstname="Shoyo"
+        lastname="Hinata"
+        email="hinataShoyo@karasuno.high.com"
+      />
+
+      <Employee/>
+      
 
 
     </>
