@@ -7,7 +7,7 @@ import MyComponent, { FirstComponent, SecondComponent, ThirdComponent } from './
 import HelloWorld from './Components/HelloWorld'
 import Student from './Components/Student'
 import Employee from './Components/Employee'
-
+import EventHandling from './Components/EventHandling'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -57,6 +57,7 @@ function App() {
 
       <Employee/>
       
+      <EventHandling/>
 
 
     </>
