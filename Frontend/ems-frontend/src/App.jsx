@@ -8,6 +8,7 @@ import HelloWorld from './Components/HelloWorld'
 import Student from './Components/Student'
 import Employee from './Components/Employee'
 import EventHandling from './Components/EventHandling'
+import ConditionRendering from './Components/ConditionRendering'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -59,6 +60,7 @@ function App() {
       
       <EventHandling/>
 
+      <ConditionRendering/>
 
     </>
   )
