@@ -7,12 +7,14 @@ const ConditionRendering = () => {
 
     let messageType
 
-    if (isLoggedIn) {
-        messageType = "User is Logged In!!!"
+    // if (isLoggedIn) {
+    //     messageType = "User is Logged In!!!"
 
-    } else {
-        messageType = "Please Login!"
-    }
+    // } else {
+    //     messageType = "Please Login!"
+    // }
+
+    messageType = (isLoggedIn ? "User is logged in!" : "Please Login!")
 
     //Event handler for onClick >> handleLogIn()
     function handleLogIn() {
