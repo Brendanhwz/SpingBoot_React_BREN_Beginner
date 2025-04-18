@@ -1,29 +1,19 @@
-
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { listEmployees } from './services/EmployeeService';
 
 const ListEmployeeComponent = () => {
 
-    //20250407 prepping of dummy data for employee (1)ID,(2)firstName,(3)lastName,(4)email
-    const dummyData = [
-        {
-            "id": 1,
-            "firstName": "Shoyo",
-            "lastName": "Hinata",
-            "email": "hinataShoyo@karasunohigh.com"
-        },
-        {
-            "id": 2,
-            "firstName": "Tobio",
-            "lastName": "Kageyama",
-            "email": "kageyamaTobio@karasunohigh.com"
-        },
-        {
-            "id": 3,    
-            "firstName": "Fujiwara",
-            "lastName": "Takumi",
-            "email": "takumiFujiwara@tofuhouse.com"
-        }
-    ]
+    //20250417 Setting state variable to set employee list
+    const[employees, setEmployees] = useState([]);
+
+    //20250417 using useEffect hook to handle axios REST method calls
+    useEffect(() => {
+        listEmployees().then((response) => {
+            setEmployees(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
+    }, [])
 
 
   return (
@@ -39,9 +29,9 @@ const ListEmployeeComponent = () => {
                 </tr>
             </thead>
             <tbody>
-                {/* For writting JS code in the JSX enclose within {} */}
                 {
-                    dummyData.map(employee => 
+                    //20250417 Mapping state variable method 
+                    employees.map(employee =>
                         <tr key={employee.id}>
                             <td>{employee.id}</td>
                             <td>{employee.firstName}</td>

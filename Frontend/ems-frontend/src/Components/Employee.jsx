@@ -7,7 +7,7 @@ class Employee extends React.Component {
     constructor(props) {
         super(props)
 
-        //Defining state object
+        //Defining state object inside the class default constructor
         this.state = {
             firstName:"Tobio",
             lastName:"Kageyama",
