@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { listEmployees } from '../services/EmployeeService';
+import { useNavigate } from 'react-router-dom';
 
 const ListEmployeeComponent = () => {
 
     //20250417 Setting state variable to set employee list
     const[employees, setEmployees] = useState([]);
+
+    const navigate = useNavigate();
 
     //20250417 using useEffect hook to handle axios REST method calls
     useEffect(() => {
@@ -15,10 +18,15 @@ const ListEmployeeComponent = () => {
         })
     }, [])
 
+    function addNewEmployee() {
+        navigate("/add-employee")
+    }
+
 
   return (
     <div className='container'>
         <h2 className='text-center'>List of Employees</h2>
+        <button className='btn btn-primary mb-2' onClick={addNewEmployee} >Add Employee</button>
         <table className='table table-striped table-bordered'>
             <thead>
                 <tr>
@@ -27,7 +35,7 @@ const ListEmployeeComponent = () => {
                     <th>Employee Last Name</th>
                     <th>Employee Email</th>
                 </tr>
-            </thead>
+            </thead>    
             <tbody>
                 {
                     //20250417 Mapping state variable method 
