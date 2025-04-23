@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { useState } from 'react'
+import { addEmployee } from '../services/EmployeeService';
 
 const EmployeeComponent = () => {
 
@@ -13,7 +14,12 @@ const EmployeeComponent = () => {
     function saveEmployee(e) {
         e.preventDefault();
         const employee = {firstName, lastName, email};
-        console.log(employee)
+        //20250423 TO CALL addEmployee() in service layer to POST data to server
+        addEmployee(employee).then((response) => {
+            console.log(response.data);
+        }).catch(error => {
+            console.log(error);
+        })
     }
 
   return (
