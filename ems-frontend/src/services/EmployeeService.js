@@ -15,3 +15,8 @@ export const addEmployee = (employee) => {
 export const getEmployee = (employeeId) => {
     return axios.get(REST_API_BASE_URL + "/" + employeeId);
 }
+
+//250615 Defining new service method to update employee
+export const updateEmployee = (employeeId, employee) => {
+    return axios.put(REST_API_BASE_URL + "/" + employeeId, employee);
+}

@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { addEmployee, getEmployee } from '../services/EmployeeService';
+import { addEmployee, getEmployee, updateEmployee } from '../services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EmployeeComponent = () => {
@@ -25,20 +25,33 @@ const EmployeeComponent = () => {
     });
 
     //Event handler when user submits the form
-    function saveEmployee(e) {
+    function saveOrUpdateEmployee(e) {
         e.preventDefault();
         const employee = {firstName, lastName, email};
 
         //Calling validateForm method 
         if (validateForm()) {
-            console.log(errors);
-            //20250423 TO CALL addEmployee() in service layer to POST data to server
-            addEmployee(employee).then((response) => {
-                console.log(response.data);
-                navigate('/employees');
-            }).catch(error => {
-                console.log(error);
-            })
+
+            //250615 To have new condition on wheter to call Update Or Create service method
+            if (id) {//To update employee
+                console.log("Updating employeeeeeee");
+                updateEmployee(id, employee).then((response) => {
+                    console.log(response.data);
+                    navigate('/employees');
+                }) .catch(error => {
+                    console.log(error);
+                })
+
+            } else {// To add new employee
+                console.log("Adding employeeeeeee");
+                //20250423 TO CALL addEmployee() in service layer to POST data to server
+                addEmployee(employee).then((response) => {
+                    console.log(response.data);
+                    navigate('/employees');
+                }).catch(error => {
+                    console.log(error);
+                })
+            }
         } 
     }
 
@@ -150,7 +163,7 @@ const EmployeeComponent = () => {
                         </div>
 
                         {/* Submit Button */}
-                        <button className='btn btn-success' onClick={saveEmployee}>Submit</button>
+                        <button className='btn btn-success' onClick={saveOrUpdateEmployee}>Submit</button>
 
                     </form>
                 </div>
