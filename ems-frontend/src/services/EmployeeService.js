@@ -10,3 +10,8 @@ export const listEmployees = () => {
 export const addEmployee = (employee) => {
     return axios.post(REST_API_BASE_URL, employee);
 }
+
+//20250614 Defining new service method to getEmployee(id)
+export const getEmployee = (employeeId) => {
+    return axios.get(REST_API_BASE_URL + "/" + employeeId);
+}

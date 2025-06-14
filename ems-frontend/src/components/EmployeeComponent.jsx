@@ -1,7 +1,7 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { addEmployee } from '../services/EmployeeService';
+import { addEmployee, getEmployee } from '../services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EmployeeComponent = () => {
@@ -50,6 +50,19 @@ const EmployeeComponent = () => {
             return <h2 className='text-center'>Add Employee</h2>
         }
     }
+
+    //20250614 using useEffect react hook to pull single employee data for Update Employee Page
+
+    useEffect(() => {
+        getEmployee(id).then(response => {
+            setFirstName(response.data.firstName);
+            setLastName(response.data.lastName);
+            setEmail(response.data.email);
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    }, []);// useEffect hook only render once when component loads!
 
     //Event handler to validate form
     function validateForm() {
