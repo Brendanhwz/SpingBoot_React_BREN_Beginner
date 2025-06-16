@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { listEmployees } from '../services/EmployeeService';
+import { deleteEmployee, listEmployees } from '../services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ListEmployeeComponent = () => {
@@ -11,12 +11,16 @@ const ListEmployeeComponent = () => {
 
     //20250417 using useEffect hook to handle axios REST method calls
     useEffect(() => {
+        listAllEmployees();
+    }, [])
+
+    function listAllEmployees() {
         listEmployees().then((response) => {
             setEmployees(response.data);
         }).catch(error => {
             console.error(error);
         })
-    }, [])
+    }
 
     function addNewEmployee() {
         navigate("/add-employee")
@@ -24,6 +28,15 @@ const ListEmployeeComponent = () => {
 
     function updateEmployee(employeeId) {
         navigate(`/edit-employee/${employeeId}`)
+    }
+
+    function deleteSingleEmployee(employeeId) {
+        //console.log(employeeId);
+        deleteEmployee(employeeId).then((response) => {
+            listAllEmployees();
+        }).catch(error => {
+            console.error(error);
+        })
     }
 
 
@@ -54,6 +67,10 @@ const ListEmployeeComponent = () => {
                                 <button className='btn btn-info' onClick={() => {
                                     updateEmployee(employee.id)
                                 }}>Update</button>
+                                
+                                <button className='btn btn-danger' onClick={() => {
+                                    deleteSingleEmployee(employee.id)
+                                }} style={{marginLeft: '20px'}}>Delete</button>
                             </td>
                         </tr>
                     )

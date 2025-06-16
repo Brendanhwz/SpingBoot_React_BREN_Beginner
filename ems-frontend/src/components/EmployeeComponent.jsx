@@ -56,7 +56,7 @@ const EmployeeComponent = () => {
     }
 
     function updatePageTitle() {
-        console.log(id);
+        //console.log(id);
         if(id) {
             return <h2 className='text-center'>Update Employee</h2>
         } else {
